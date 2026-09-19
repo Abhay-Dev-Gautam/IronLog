@@ -1,0 +1,22 @@
+/* Keeps scrollable content clear of the fixed bar. */
+.spacer {
+  height: 84px;
+}
+
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--chrome-bottom);
+  z-index: 20;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 16px calc(var(--gutter) + var(--safe-right)) calc(12px + var(--action-safe-bottom))
+    calc(var(--gutter) + var(--safe-left));
+  background: linear-gradient(to top, var(--color-bg) 55%, rgba(10, 10, 11, 0));
+  pointer-events: none;
+}
+
+.bar > * {
+  pointer-events: auto;
+}

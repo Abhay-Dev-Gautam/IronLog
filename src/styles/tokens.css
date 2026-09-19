@@ -1,0 +1,57 @@
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --color-bg: #0a0a0b;
+  --color-surface: #141416;
+  --color-surface-2: #1c1c1f;
+  --color-surface-3: #26262a;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(255, 255, 255, 0.13);
+  --color-chrome: rgba(10, 10, 11, 0.78);
+
+  /* Text — all pass WCAG AA on --color-surface */
+  --color-text: #f4f4f5;
+  --color-text-2: #a1a1aa;
+  --color-text-3: #82828b;
+
+  /* Brand */
+  --color-accent: #d4ff3f;
+  --color-accent-pressed: #b9e02c;
+  --color-accent-soft: rgba(212, 255, 63, 0.12);
+  --color-accent-line: rgba(212, 255, 63, 0.35);
+  --color-on-accent: #0a0a0b;
+  --color-danger: #ff5d4f;
+
+  /* Type */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.8125rem; /* 13 */
+  --text-md: 0.9375rem; /* 15 */
+  --text-base: 1.0625rem; /* 17 */
+  --text-lg: 1.25rem; /* 20 */
+  --text-xl: 1.75rem; /* 28 */
+  --text-2xl: 2.125rem; /* 34 */
+
+  /* Shape & space */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --gutter: 20px;
+  --touch: 44px;
+
+  /* Chrome */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --tabbar-height: 56px;
+  --max-width: 480px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+}

@@ -1,0 +1,29 @@
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.track {
+  stroke: var(--color-surface-3);
+}
+
+.value {
+  stroke: var(--color-accent);
+  transition: stroke-dashoffset 500ms var(--ease-out);
+}
+
+.label {
+  position: relative;
+  font-size: var(--text-md);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}

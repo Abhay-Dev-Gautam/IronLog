@@ -1,0 +1,136 @@
+.row {
+  display: grid;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 4px;
+  margin-inline: -6px -6px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.number {
+  display: grid;
+  place-items: center;
+  height: 30px;
+  border-radius: 9px;
+  font-size: var(--text-md);
+  font-weight: 750;
+  color: var(--color-text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.next .number {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface-2);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  /* ≥16px, otherwise iOS zooms the page when the field is focused. */
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  caret-color: var(--color-accent);
+  transition:
+    box-shadow var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+/* Last time's values as guidance: clearly dimmer than anything actually entered. */
+.input::placeholder {
+  color: var(--color-text-3);
+  font-size: var(--text-md);
+  font-weight: 500;
+  opacity: 0.55;
+}
+
+.input:focus {
+  outline: none;
+  background: var(--color-surface-3);
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.input[aria-invalid='true'] {
+  box-shadow: inset 0 0 0 2px var(--color-danger);
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--color-text-3);
+  box-shadow: inset 0 0 0 2px var(--color-border-strong);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.check:active {
+  transform: scale(0.9);
+}
+
+.next .check {
+  color: var(--color-text-2);
+  box-shadow: inset 0 0 0 2px var(--color-accent-line);
+}
+
+.done {
+  background: var(--color-accent-soft);
+}
+
+.done .input {
+  background: transparent;
+  box-shadow: none;
+}
+
+.done .input:focus {
+  background: var(--color-surface-3);
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.done .number {
+  color: var(--color-accent);
+}
+
+.done .check {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  box-shadow: none;
+  animation: check-pop 260ms var(--ease-out);
+}
+
+@keyframes check-pop {
+  40% {
+    transform: scale(1.14);
+  }
+}
+
+/* Small phones: keep 6-character weights like "102.25" fully visible. */
+@media (max-width: 359px) {
+  .row {
+    gap: 6px;
+  }
+
+  .input {
+    padding: 0 4px;
+    font-size: 1rem;
+  }
+}
+
+.error {
+  margin: 2px 0 6px 38px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-danger);
+}

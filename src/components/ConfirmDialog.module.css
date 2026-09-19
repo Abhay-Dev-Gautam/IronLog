@@ -1,0 +1,55 @@
+.dialog {
+  width: min(calc(100% - 2 * var(--gutter)), 400px);
+  margin: auto auto calc(var(--safe-bottom) + 16px);
+  padding: 24px 20px 20px;
+  border: 0;
+  border-radius: 22px;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  box-shadow:
+    inset 0 0 0 1px var(--color-border-strong),
+    0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.dialog[open] {
+  animation: dialog-in var(--duration-base) var(--ease-out);
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.message {
+  margin-top: 8px;
+  font-size: var(--text-md);
+  color: var(--color-text-2);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.danger {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.danger:active {
+  background: #e24a3d;
+}

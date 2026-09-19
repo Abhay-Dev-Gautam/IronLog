@@ -1,0 +1,23 @@
+.section {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0 10px;
+  padding-inline: 4px;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-2);
+}
+
+.trailing {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-3);
+}

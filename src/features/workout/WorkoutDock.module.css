@@ -1,0 +1,246 @@
+.dock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 10px;
+}
+
+.finish {
+  width: 100%;
+}
+
+/* Rest pill */
+
+.pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 14px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--color-surface-2);
+  box-shadow: inset 0 0 0 1px var(--color-border-strong);
+  color: var(--color-text-2);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.pill:active {
+  transform: scale(0.97);
+}
+
+.pillText {
+  font-size: 1.1875rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.running {
+  color: var(--color-text);
+}
+
+.running .pillText {
+  color: var(--color-accent);
+}
+
+.expired {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  box-shadow: none;
+  animation: rest-done 600ms var(--ease-out);
+}
+
+@keyframes rest-done {
+  30% {
+    transform: scale(1.04);
+  }
+}
+
+.pillProgress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--color-accent);
+  transform-origin: left;
+  transition: transform 250ms linear;
+}
+
+.chevron,
+.chevronOpen {
+  opacity: 0.6;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.chevron {
+  transform: rotate(180deg);
+}
+
+/* Panel */
+
+.panel {
+  padding: 14px 16px 16px;
+  border-radius: 22px;
+  background: var(--color-surface-2);
+  box-shadow:
+    inset 0 0 0 1px var(--color-border-strong),
+    0 -12px 40px rgba(0, 0, 0, 0.55);
+  animation: panel-in var(--duration-base) var(--ease-out);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.panelLabel {
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  color: var(--color-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: var(--touch);
+  height: var(--touch);
+  margin: -8px -10px -8px 0;
+  border-radius: 50%;
+  color: var(--color-text-2);
+}
+
+.close:active {
+  background: var(--color-surface-3);
+}
+
+.clock {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.clockExpired {
+  color: var(--color-accent);
+}
+
+.bar {
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 2px;
+  background: var(--color-surface-3);
+  overflow: hidden;
+}
+
+.barValue {
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left;
+  transition: transform 250ms linear;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  min-inline-size: 0;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.preset {
+  min-height: var(--touch);
+  border-radius: 12px;
+  background: var(--color-surface-3);
+  font-size: var(--text-md);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.preset:active {
+  transform: scale(0.95);
+}
+
+.preset[aria-pressed='true'] {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent-line);
+}
+
+.custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.customLabel {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-text-2);
+}
+
+.customInput {
+  flex: 1;
+  min-width: 0;
+  height: var(--touch);
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface-3);
+  font-size: 1rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+.customInput:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.customInput[aria-invalid='true'] {
+  box-shadow: inset 0 0 0 2px var(--color-danger);
+}
+
+.customError {
+  margin-top: 6px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-danger);
+}

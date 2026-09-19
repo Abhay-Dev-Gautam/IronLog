@@ -1,0 +1,117 @@
+.card {
+  /* Clear the sticky top bar when scrolled into view. */
+  scroll-margin-top: calc(var(--safe-top) + 64px);
+  transition: box-shadow var(--duration-base) var(--ease-out);
+}
+
+.current {
+  box-shadow: inset 0 0 0 1.5px var(--color-accent-line);
+}
+
+@media (max-width: 359px) {
+  .card {
+    padding-inline: 14px;
+  }
+
+  .columns {
+    gap: 6px;
+  }
+}
+
+.sets {
+  margin-top: 14px;
+}
+
+.columns {
+  display: grid;
+  gap: 8px;
+  padding: 0 0 4px 4px;
+  margin-inline: -6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-text-3);
+}
+
+.setList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer {
+  display: flex;
+  gap: 6px;
+  margin: 8px -8px -6px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch);
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-md);
+  font-weight: 650;
+  color: var(--color-text-2);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.action:first-child {
+  color: var(--color-accent);
+}
+
+.action:active {
+  background: var(--color-surface-2);
+}
+
+.action:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.action:last-child {
+  margin-left: auto;
+}
+
+/* A dot shows a note exists even while collapsed. */
+.hasNote::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.noteField {
+  margin-top: 6px;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  font-size: 1rem;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-3);
+}
+
+.textarea:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}

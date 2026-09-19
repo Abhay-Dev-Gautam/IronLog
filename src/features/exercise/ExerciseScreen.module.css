@@ -1,0 +1,192 @@
+.card {
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  overflow: hidden;
+}
+
+.recordRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 12px;
+  padding: 13px 18px;
+}
+
+.recordRow + .recordRow {
+  border-top: 1px solid var(--color-border);
+}
+
+.recordLabel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  font-weight: 550;
+}
+
+.recordValue {
+  font-weight: 750;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.recordDate {
+  grid-column: 2;
+  font-size: var(--text-sm);
+  color: var(--color-text-3);
+  text-align: right;
+}
+
+.recordNote {
+  flex-basis: 100%;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-3);
+}
+
+.estimateTag {
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 0 0 1px var(--color-border-strong);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-2);
+}
+
+/* Metric switcher: a segmented control */
+.switcher {
+  display: flex;
+  gap: 4px;
+  min-inline-size: 0;
+  margin: 0 0 10px;
+  padding: 4px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.switch {
+  flex: 1;
+  min-height: var(--touch);
+  border-radius: 10px;
+  font-size: var(--text-md);
+  font-weight: 650;
+  color: var(--color-text-2);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.switch[aria-pressed='true'] {
+  background: var(--color-surface-3);
+  color: var(--color-text);
+}
+
+.switch:active {
+  background: var(--color-surface-2);
+}
+
+.note {
+  margin-top: 10px;
+  padding-inline: 4px;
+  font-size: var(--text-sm);
+  color: var(--color-text-3);
+}
+
+/* History */
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry {
+  padding: 6px 18px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.entryHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: var(--touch);
+  padding: 10px 0 4px;
+}
+
+.entryHead:active {
+  opacity: 0.6;
+}
+
+.entryDate {
+  font-weight: 700;
+}
+
+.entryWorkout {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entryVolume {
+  font-size: var(--text-sm);
+  font-weight: 650;
+  color: var(--color-text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sets {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.set {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.setNumber {
+  width: 16px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-3);
+}
+
+.setText {
+  min-width: 0;
+}
+
+.bestTag {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.entryNote {
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-accent-line);
+  font-size: var(--text-md);
+  color: var(--color-text-2);
+}
