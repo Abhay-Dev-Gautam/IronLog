@@ -4,8 +4,10 @@
  */
 
 export const DB_NAME = 'ironlog'
-export const DB_VERSION = 1
+/** v1: sessions. v2: adds the settings store (existing sessions are untouched). */
+export const DB_VERSION = 2
 export const SESSIONS_STORE = 'sessions'
+export const SETTINGS_STORE = 'settings'
 
 const OPEN_TIMEOUT_MS = 5000
 
@@ -28,10 +30,15 @@ export function openDatabase({ name = DB_NAME, factory, timeoutMs = OPEN_TIMEOUT
     const timer = setTimeout(() => reject(new Error('Opening local storage timed out.')), timeoutMs)
     const request = idb.open(name, DB_VERSION)
 
+    // Additive upgrades only: every version creates what is missing and never
+    // touches or rewrites data that is already there.
     request.onupgradeneeded = () => {
       const db = request.result
       if (!db.objectStoreNames.contains(SESSIONS_STORE)) {
         db.createObjectStore(SESSIONS_STORE, { keyPath: 'id' })
+      }
+      if (!db.objectStoreNames.contains(SETTINGS_STORE)) {
+        db.createObjectStore(SETTINGS_STORE, { keyPath: 'key' })
       }
     }
     request.onsuccess = () => {

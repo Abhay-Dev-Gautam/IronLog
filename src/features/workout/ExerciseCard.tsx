@@ -1,3 +1,4 @@
+import { ExerciseImage } from '../../components/ExerciseImage'
 import type { ResolvedExercise } from '../../services/plan'
 import type { PreviousPerformance } from '../../services/sessionStats'
 import { formatClock, formatRange } from '../../utils/format'
@@ -19,7 +20,13 @@ export function ExerciseCard({ position, item, previous }: ExerciseCardProps) {
 
   return (
     <article className={styles.card} aria-labelledby={titleId}>
-      <ExerciseHeading titleId={titleId} position={position} name={exercise.name} subtitle={muscleLabel(exercise.id)} />
+      <ExerciseHeading
+        titleId={titleId}
+        position={position}
+        name={exercise.name}
+        subtitle={muscleLabel(exercise.id)}
+        media={<ExerciseImage exerciseId={exercise.id} />}
+      />
 
       <dl className={styles.spec}>
         <div className={styles.specItem}>

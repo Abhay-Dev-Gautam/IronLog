@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Icon } from '../../components/Icon'
 import { SetText } from '../../components/SetText'
 import type { PreviousPerformance } from '../../services/sessionStats'
@@ -11,9 +12,11 @@ interface ExerciseHeadingProps {
   name: string
   subtitle: string
   done?: boolean
+  /** Optional illustration, shown on the preview card only. */
+  media?: ReactNode
 }
 
-export function ExerciseHeading({ titleId, position, name, subtitle, done = false }: ExerciseHeadingProps) {
+export function ExerciseHeading({ titleId, position, name, subtitle, done = false, media }: ExerciseHeadingProps) {
   return (
     <header className={styles.head}>
       <span className={`${styles.index} ${done ? styles.indexDone : ''}`} aria-hidden="true">
@@ -26,6 +29,7 @@ export function ExerciseHeading({ titleId, position, name, subtitle, done = fals
         </h2>
         {subtitle && <p className={styles.muscles}>{subtitle}</p>}
       </div>
+      {media}
     </header>
   )
 }

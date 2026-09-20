@@ -1,3 +1,7 @@
+.hero {
+  margin-top: 14px;
+}
+
 .card {
   border-radius: var(--radius-lg);
   background: var(--color-surface);

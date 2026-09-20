@@ -20,6 +20,8 @@ export type IconName =
   | 'reset'
   | 'trophy'
   | 'chevron-down'
+  | 'download'
+  | 'upload'
 
 const PATHS: Record<IconName, ReactNode> = {
   dumbbell: <path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11" />,
@@ -65,6 +67,8 @@ const PATHS: Record<IconName, ReactNode> = {
     <path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4" />
   ),
   'chevron-down': <path d="M6 9.5l6 6 6-6" />,
+  download: <path d="M12 4v10.5M7.5 10.5L12 15l4.5-4.5M5 19h14" />,
+  upload: <path d="M12 15V4.5M7.5 9L12 4.5 16.5 9M5 19h14" />,
 }
 
 interface IconProps {

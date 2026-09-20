@@ -1,0 +1,47 @@
+.frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+/*
+ * Absolutely positioned: as a grid item with height:100% the image would size
+ * against a row that is itself sized by the image, and end up cropped.
+ */
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fallback {
+  color: var(--color-text-3);
+}
+
+.hero {
+  width: 100%;
+  /* Keeps the illustration a banner rather than a screen-filling image. */
+  aspect-ratio: 5 / 2;
+  max-height: 180px;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.hero .image {
+  padding: 10px 0;
+}
+
+.thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+}
+
+.thumb .image {
+  padding: 2px;
+}

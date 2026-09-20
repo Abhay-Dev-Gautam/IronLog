@@ -51,6 +51,25 @@ describe('resolvePrescription', () => {
     expect(resolved).toMatchObject({ sets: 3, rir: null, restSeconds: 60, notes: 'Brace' })
   })
 
+  it('prefers an exercise\'s own rest, then the user default, then the plan default', () => {
+    const plan = makePlan()
+    const userDefault = { restSecondsDefault: 90 }
+    // No rest of its own: the user's default applies.
+    const pressSet = resolvePrescription({ id: 'x', exerciseId: 'press', target: { min: 8, max: 12 } }, plan.defaults, library, userDefault)
+    expect(pressSet?.restSeconds).toBe(90)
+    // Its own rest wins over the user's default.
+    const plankSet = resolvePrescription({ id: 'y', exerciseId: 'plank', target: { min: 30, max: 60 }, restSeconds: 60 }, plan.defaults, library, userDefault)
+    expect(plankSet?.restSeconds).toBe(60)
+    // Without a user default, the plan default applies.
+    expect(resolvePrescription({ id: 'z', exerciseId: 'press', target: { min: 8, max: 12 } }, plan.defaults, library)?.restSeconds).toBe(120)
+  })
+
+  it('applies the user default across a whole day without touching per-exercise rest', () => {
+    const plan = makePlan()
+    const day = resolveWorkoutDay(plan, plan.days[0]!, library, { restSecondsDefault: 45 })
+    expect(day.exercises.map((exercise) => exercise.restSeconds)).toEqual([45, 60])
+  })
+
   it('returns null for an exercise missing from the library', () => {
     const plan = makePlan()
     expect(resolvePrescription({ id: 'x', exerciseId: 'ghost', target: { min: 1, max: 2 } }, plan.defaults, library)).toBeNull()

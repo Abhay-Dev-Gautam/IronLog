@@ -3,6 +3,7 @@ import { now } from '../utils/clock'
 import { createId } from '../utils/id'
 import { findWorkoutDay, resolveWorkoutDay } from './plan'
 import { resetRest } from './restTimerStore'
+import { settingsStore } from './settingsStore'
 import type { SetValues } from './setValidation'
 import { sessionStore } from './sessionStore'
 import {
@@ -32,7 +33,10 @@ export function startWorkout(plan: WorkoutPlan, dayId: string): WorkoutSession |
   const day = findWorkoutDay(plan, dayId)
   if (!day) return null
   resetRest() // A new workout never inherits a leftover countdown.
-  return sessionStore.start(createSession({ plan, workout: resolveWorkoutDay(plan, day), now: now(), createId }))
+  const workout = resolveWorkoutDay(plan, day, undefined, {
+    restSecondsDefault: settingsStore.getSettings().restTimer.defaultSeconds,
+  })
+  return sessionStore.start(createSession({ plan, workout, now: now(), createId }))
 }
 
 export function editSet(exerciseId: string, setId: string, patch: Partial<SetValues>): void {

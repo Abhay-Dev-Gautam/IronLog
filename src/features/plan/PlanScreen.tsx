@@ -4,7 +4,7 @@ import { Link } from '../../components/Link'
 import { ScreenHeader } from '../../components/ScreenHeader'
 import { SectionHeader } from '../../components/SectionHeader'
 import { TopBar } from '../../components/TopBar'
-import { usePlan } from '../../hooks/useProgram'
+import { usePlan, useSettings } from '../../hooks/useProgram'
 import { resolveWorkoutDay } from '../../services/plan'
 import { WEEKDAY_LABELS } from '../../utils/date'
 import { formatClock, formatRange, formatTarget, joinFocus, pluralize } from '../../utils/format'
@@ -12,7 +12,9 @@ import styles from './PlanScreen.module.css'
 
 export function PlanScreen() {
   const plan = usePlan()
+  const settings = useSettings()
   const { defaults } = plan
+  const restSecondsDefault = settings.restTimer.defaultSeconds
 
   return (
     <>
@@ -20,11 +22,11 @@ export function PlanScreen() {
       <ScreenHeader
         eyebrow="Workout plan"
         title={plan.name}
-        subtitle={`Defaults: ${pluralize(defaults.sets, 'working set')} · RIR ${formatRange(defaults.rir)} · ${formatClock(defaults.restSeconds)} rest`}
+        subtitle={`Defaults: ${pluralize(defaults.sets, 'working set')} · RIR ${formatRange(defaults.rir)} · ${formatClock(restSecondsDefault)} rest`}
       />
 
       {plan.days.map((day) => {
-        const workout = resolveWorkoutDay(plan, day)
+        const workout = resolveWorkoutDay(plan, day, undefined, { restSecondsDefault })
         const headingId = `plan-${day.id}`
         return (
           <section key={day.id} aria-labelledby={headingId}>

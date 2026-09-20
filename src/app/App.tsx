@@ -16,6 +16,7 @@ import { ErrorBoundary } from './ErrorBoundary'
 import { usePath } from './router'
 import { matchRoute, paths, tabForRoute, type Route } from './routes'
 import { StorageBanner } from './StorageBanner'
+import { UpdateBanner } from './UpdateBanner'
 import { TabBar } from './TabBar'
 
 function RouteScreen({ route }: { route: Route }) {
@@ -87,6 +88,7 @@ export function App() {
       {/* Keyed by path: each screen mounts fresh and a crashed screen recovers on navigation. */}
       <main key={path} className={styles.main}>
         <StorageBanner />
+        <UpdateBanner />
         <ErrorBoundary>
           <RouteScreen route={route} />
         </ErrorBoundary>

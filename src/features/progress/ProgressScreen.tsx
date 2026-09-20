@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { paths } from '../../app/routes'
 import { EmptyState } from '../../components/EmptyState'
+import { ExerciseImage } from '../../components/ExerciseImage'
 import { Icon } from '../../components/Icon'
 import { Link } from '../../components/Link'
 import { ScreenHeader } from '../../components/ScreenHeader'
@@ -124,6 +125,7 @@ export function ProgressScreen() {
             return (
               <li key={exercise.exerciseId}>
                 <Link to={paths.exercise(exercise.exerciseId)} className={styles.row}>
+                  <ExerciseImage exerciseId={exercise.exerciseId} />
                   <span className={styles.info}>
                     <span className={styles.name}>{exercise.name}</span>
                     <span className={styles.meta}>

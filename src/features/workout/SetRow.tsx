@@ -1,6 +1,7 @@
 import { memo, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { Icon } from '../../components/Icon'
 import { startRest } from '../../services/restTimerStore'
+import { settingsStore } from '../../services/settingsStore'
 import {
   FIELD_KEYS,
   fieldsFor,
@@ -137,7 +138,8 @@ export const SetRow = memo(function SetRow({
     setErrors({})
     // Put the keyboard away: the next thing is resting, not typing.
     if (rowRef.current?.contains(document.activeElement)) (document.activeElement as HTMLElement).blur()
-    startRest(restSeconds, `${exerciseName} · Set ${number}`)
+    // The set is always saved; only the countdown is optional.
+    if (settingsStore.getSettings().restTimer.autoStart) startRest(restSeconds, `${exerciseName} · Set ${number}`)
   }
 
   const messages = fields.flatMap((field) => (errors[field] ? [errors[field]] : []))

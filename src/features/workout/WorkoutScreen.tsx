@@ -6,7 +6,7 @@ import { EmptyState } from '../../components/EmptyState'
 import { Icon } from '../../components/Icon'
 import { ScreenHeader } from '../../components/ScreenHeader'
 import { TopBar } from '../../components/TopBar'
-import { useActiveSession, usePlan, useSessionHistory } from '../../hooks/useProgram'
+import { useActiveSession, usePlan, useSessionHistory, useSettings } from '../../hooks/useProgram'
 import { findWorkoutDay, resolveWorkoutDay } from '../../services/plan'
 import { getPreviousPerformance } from '../../services/sessionStats'
 import { startWorkout } from '../../services/workoutActions'
@@ -20,6 +20,7 @@ export function WorkoutScreen({ dayId }: { dayId: string }) {
   const plan = usePlan()
   const history = useSessionHistory()
   const active = useActiveSession()
+  const settings = useSettings()
   const day = findWorkoutDay(plan, dayId)
 
   if (active?.workoutDayId === dayId) return <ActiveWorkout session={active} plan={plan} />
@@ -44,7 +45,7 @@ export function WorkoutScreen({ dayId }: { dayId: string }) {
     )
   }
 
-  const workout = resolveWorkoutDay(plan, day)
+  const workout = resolveWorkoutDay(plan, day, undefined, { restSecondsDefault: settings.restTimer.defaultSeconds })
 
   function handleStart() {
     // Starting only creates the session; opening this screen never does.

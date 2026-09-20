@@ -44,10 +44,17 @@ export function findWorkoutDayByWeekday(plan: WorkoutPlan, weekday: Weekday): Wo
   return plan.days.find((day) => day.weekday === weekday)
 }
 
+/** Overrides applied while resolving a plan, e.g. the user's own default rest. */
+export interface ResolveOptions {
+  /** Used for exercises that don't specify their own rest. */
+  restSecondsDefault?: number
+}
+
 export function resolvePrescription(
   prescription: ExercisePrescription,
   defaults: PrescriptionDefaults,
   library: ExerciseLibrary = EXERCISES_BY_ID,
+  options: ResolveOptions = {},
 ): ResolvedExercise | null {
   const exercise = library.get(prescription.exerciseId)
   if (!exercise) return null
@@ -57,7 +64,8 @@ export function resolvePrescription(
     sets: prescription.sets ?? defaults.sets,
     target: prescription.target,
     rir: prescription.rir === undefined ? defaults.rir : prescription.rir,
-    restSeconds: prescription.restSeconds ?? defaults.restSeconds,
+    // Exercise-specific rest wins, then the user's default, then the plan's.
+    restSeconds: prescription.restSeconds ?? options.restSecondsDefault ?? defaults.restSeconds,
     notes: prescription.notes ?? null,
   }
 }
@@ -66,10 +74,11 @@ export function resolveWorkoutDay(
   plan: WorkoutPlan,
   day: WorkoutDay,
   library: ExerciseLibrary = EXERCISES_BY_ID,
+  options: ResolveOptions = {},
 ): ResolvedWorkoutDay {
   const exercises: ResolvedExercise[] = []
   for (const prescription of day.exercises) {
-    const resolved = resolvePrescription(prescription, plan.defaults, library)
+    const resolved = resolvePrescription(prescription, plan.defaults, library, options)
     if (resolved) {
       exercises.push(resolved)
     } else {

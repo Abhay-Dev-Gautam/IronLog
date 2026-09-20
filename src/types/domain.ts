@@ -57,6 +57,8 @@ export interface Exercise {
   name: string
   muscles: MuscleGroup[]
   tracking: TrackingMode
+  /** Illustration to show for this exercise (see data/exerciseMedia). */
+  media?: string
   /**
    * Whether an estimated 1RM is a meaningful number for this movement.
    * False for isolation, unilateral and ambiguous exercises where an e1RM

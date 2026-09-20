@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { paths } from '../../app/routes'
 import { ButtonLink } from '../../components/Button'
 import { EmptyState } from '../../components/EmptyState'
+import { ExerciseImage } from '../../components/ExerciseImage'
 import { Link } from '../../components/Link'
 import { ScreenHeader } from '../../components/ScreenHeader'
 import { SectionHeader } from '../../components/SectionHeader'
@@ -66,6 +67,7 @@ export function ExerciseScreen({ exerciseId }: { exerciseId: string }) {
   return (
     <>
       <TopBar fallback={paths.progress} />
+      <ExerciseImage exerciseId={exerciseId} variant="hero" className={styles.hero} />
       <ScreenHeader
         eyebrow={muscles || 'Exercise'}
         title={name}
