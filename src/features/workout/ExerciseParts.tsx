@@ -12,7 +12,7 @@ interface ExerciseHeadingProps {
   name: string
   subtitle: string
   done?: boolean
-  /** Optional illustration, shown on the preview card only. */
+  /** Optional illustration, shown at the end of the heading row. */
   media?: ReactNode
 }
 

@@ -36,6 +36,17 @@
   padding: 10px 0;
 }
 
+/* Active workout card: large enough to recognise the movement at a glance. */
+.card {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+}
+
+.card .image {
+  padding: 3px;
+}
+
 .thumb {
   width: 46px;
   height: 46px;

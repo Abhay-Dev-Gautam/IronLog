@@ -6,8 +6,8 @@ import { Icon } from './Icon'
 
 interface ExerciseImageProps {
   exerciseId: ExerciseId
-  /** `hero` for the exercise screen, `thumb` for list rows and cards. */
-  variant?: 'hero' | 'thumb'
+  /** `hero` for the exercise screen, `card` for the active workout card, `thumb` for list rows. */
+  variant?: 'hero' | 'card' | 'thumb'
   className?: string
 }
 
@@ -36,7 +36,7 @@ export function ExerciseImage({ exerciseId, variant = 'thumb', className }: Exer
           onError={() => setFailedSrc(media.src)}
         />
       ) : (
-        <Icon name="dumbbell" size={variant === 'hero' ? 40 : 22} className={styles.fallback} />
+        <Icon name="dumbbell" size={variant === 'hero' ? 40 : variant === 'card' ? 28 : 22} className={styles.fallback} />
       )}
     </div>
   )

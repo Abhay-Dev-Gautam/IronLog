@@ -1,5 +1,6 @@
 import { memo, useState } from 'react'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
+import { ExerciseImage } from '../../components/ExerciseImage'
 import { Icon } from '../../components/Icon'
 import { isSetComplete, type PreviousPerformance } from '../../services/sessionStats'
 import { fieldsFor } from '../../services/setValidation'
@@ -65,6 +66,7 @@ export const ExerciseLogCard = memo(function ExerciseLogCard({
         name={exercise.exerciseName}
         subtitle={targetLine(exercise)}
         done={done}
+        media={<ExerciseImage exerciseId={exercise.exerciseId} variant="card" />}
       />
 
       <PreviousSets previous={previous} tracking={exercise.tracking} />
